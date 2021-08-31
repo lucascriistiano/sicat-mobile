@@ -6,18 +6,25 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          TabClientList: {
             screens: {
-              TabOneScreen: 'one',
+              TabClientListScreen: 'one',
+              TabClientInfoScreen: 'two',
             },
           },
-          TabTwo: {
+          TabReport: {
             screens: {
-              TabTwoScreen: 'two',
+              TabReportScreen: 'two',
+            },
+          },
+          TabMyInfo: {
+            screens: {
+              TabMyInfoScreen: 'three',
             },
           },
         },
       },
+      Login: '*',
       NotFound: '*',
     },
   },

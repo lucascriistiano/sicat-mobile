@@ -5,9 +5,10 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { TabClientListScreen } from '../screens/TabClientListScreen';
+import { TabMyInfoScreen } from '../screens/TabMyInfoScreen';
+import { TabReportScreen } from '../screens/TabReportScreen';
+import { BottomTabParamList, TabOneParamList, TabThreeParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,20 +17,27 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Clientes"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Clientes"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Relatórios"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="receipt-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Informações"
+        component={TabThreeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="receipt-outline" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -50,9 +58,9 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        name="TabClientListScreen"
+        component={TabClientListScreen}
+        options={{ headerTitle: 'Clientes' }}
       />
     </TabOneStack.Navigator>
   );
@@ -64,10 +72,24 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        name="TabReportScreen"
+        component={TabReportScreen}
+        options={{ headerTitle: 'Relatórios' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="TabReportScreen"
+        component={TabMyInfoScreen}
+        options={{ headerTitle: 'Minhas Informações' }}
+      />
+    </TabThreeStack.Navigator>
   );
 }
